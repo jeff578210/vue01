@@ -5,6 +5,7 @@ import One from './components/one.vue'
 <template>
 <div>
   <One />
+  <router-view></router-view>
 </div>
 </template>
 
