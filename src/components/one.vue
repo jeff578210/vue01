@@ -3,6 +3,10 @@ import { ref,onMounted } from "vue";
 import axios from "axios";
 import VueCookies from 'vue-cookies';
 import { useRouter } from 'vue-router';
+import img1 from '../assets/計畫通.jpg';
+import img2 from '../assets/images (1).jpg';
+import add from './add.vue';
+import transfer from './transferData.vue';
 const num = ref(0);
 const userid = ref(0);
 const username = ref("");
@@ -94,14 +98,24 @@ const createcookie =()=>{
 const getcookie =()=>{
   cookievalue.value =Cookies.get('aa');
 }
+const addnum = ref(0);
+const addcallback =(res)=>{
+  addnum.value=res;
+  console.log(res);
+}
+// 單向資料流
+const data = ref('單向資料流');
+const changedata =(data2)=>{
+  data.value = data2;
+}
 </script>
 <template>
   <div>
     <h1 :style="{'color':(num===10?'red':'blue')}">hello world</h1>
     {{ num }}{{ cc }}
     <button @click="aa">++</button>
-    <input type="text" v-model="bb" />
-    <button @click="ccc">送出</button>
+    <input type="text" v-model.trim="bb" />
+    <button @click="ccc">送出</button>{{bb}}
     <div class="row d-flex">
       <div class="col d-flex flex-column c">
         輸入會員姓名<input type="text" v-model="username" class="input"/>
@@ -142,6 +156,24 @@ const getcookie =()=>{
     <button @click="toTest2">跳轉two</button>
     <a href="/aa">使用a標籤跳轉A</a>
     <a href="/bb">使用a標籤跳轉B</a>
+    <add
+    @num="addcallback"
+    />
+    {{addnum}}
+    <div class="d-flex">
+      <card
+        :src="img1"
+      />
+      <card
+        :src="img2"
+      />
+    </div>
+    <h1>單向資料流</h1>
+    <transfer
+      :username="data"
+      :changename="changedata"
+    />
+    {{data}}
   </div>
 </template>
 <style scoped>
