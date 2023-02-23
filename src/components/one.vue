@@ -92,11 +92,12 @@ const createuser = () => {
 };
 const cookievalue = ref('');
 const createcookie =()=>{
-  Cookies.config('1m');
-  Cookies.set(aa,123);
+  VueCookies.config('1m');
+  VueCookies.set('aa',123);
 }
 const getcookie =()=>{
-  cookievalue.value =Cookies.get('aa');
+  cookievalue.value =VueCookies.get('aa');
+  console.log(cookievalue.value );
 }
 const addnum = ref(0);
 const addcallback =(res)=>{
