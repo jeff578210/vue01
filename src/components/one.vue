@@ -2,7 +2,7 @@
 import { ref,onMounted } from "vue";
 import axios from "axios";
 import VueCookies from 'vue-cookies';
-import { useRouter } from 'vue-router';
+import { useRouter ,RouterLink} from 'vue-router';
 import img1 from '../assets/計畫通.jpg';
 import img2 from '../assets/images (1).jpg';
 import add from './add.vue';
@@ -22,6 +22,12 @@ const cc = "hello";
 const router = useRouter()
 const toTest2= (() => {
     router.push("./two")
+  })
+const togetimg= (() => {
+    router.push("./getimg")
+  })
+const tonaiveUI= (() => {
+    router.push("./tonaiveUI")
   })
   // onMounted網頁開啟時會先執行
 onMounted(()=>{
@@ -155,8 +161,11 @@ const changedata =(data2)=>{
         </div>
     </div>
     <button @click="toTest2">跳轉two</button>
-    <a href="/aa">使用a標籤跳轉A</a>
-    <a href="/bb">使用a標籤跳轉B</a>
+    <button @click="togetimg">獲取圖片練習</button>
+    <routerLink to="/aa">使用routerLink標籤跳轉A</routerLink>
+    <routerLink to="/bb">使用routerLink標籤跳轉B</routerLink>
+    <button @click="tonaiveUI">跳轉naiveUI</button>
+    <routerLink to="/bb">routerlink to bb</routerLink>
     <add
     @num="addcallback"
     />
